@@ -4,6 +4,7 @@ hydra:
 
 model: "PlanTL-GOB-ES/roberta-base-biomedical-clinical-es"
 symptemist_bigbio_path: "../biomedical/bigbio/hub/hub_repos/symptemist/symptemist.py"
+k-fold: False
 
 arguments:
     per_device_train_batch_size: 32
