@@ -6,6 +6,7 @@ import numpy as np
 from transformers import Trainer, TrainingArguments, AutoModelForTokenClassification, DataCollatorForTokenClassification, AutoTokenizer
 import evaluate
 import seqeval
+import spacy
 
 # -> CONSTANTS
 label2id = {
@@ -120,6 +121,52 @@ def tokenize_split(hf_split: datasets.arrow_dataset.Dataset, label_mapper: dict,
         tokenized_split = {key: tokenized_split.get(key, []) + tokenized_row.get(key, []) for key in tokenized_split}
     return datasets.Dataset.from_dict(tokenized_split)
 
+
+# -> SPAN MARKER
+def bigbio2spanmarker(split: Dataset) -> Dataset:
+
+    nlp = spacy.load("es_core_news_sm")
+
+    output = {
+        "filename": [],
+        "document_id": [],
+        "sentence_id": [],
+        "tokens": [],
+        "ner_tags": [],
+        "text": [],        
+    }
+    
+    for doc_id, row in tqdm.tqdm(enumerate(split), desc="Document progress:"):
+        
+        text = row["passages"][0]["text"][0]
+        entities = row["entities"]
+        doc = nlp(text)
+        
+        for sentence_id, sentence in enumerate(doc.sents):
+            
+            tokens = []
+            token_positions = []
+            
+            for token in sentence:
+                tokens.append(token.text)
+                token_positions.append(token.idx)
+        
+            ner_tags = [0] * len(tokens)
+                
+            for i, position in enumerate(token_positions):
+                for entity in entities:
+                    for offset in entity["offsets"]:
+                        if position==offset[0] or position in range(offset[0],offset[1]):
+                            ner_tags[i] = 1
+
+            output["filename"].append(row["document_id"])
+            output["document_id"].append(doc_id)
+            output["sentence_id"].append(sentence_id)
+            output["tokens"].append(tokens)
+            output["ner_tags"].append(ner_tags)
+            output["text"].append(sentence.text)
+        
+    return datasets.Dataset.from_dict(output)
     
 # -> EVALUATE
 seqeval = evaluate.load("seqeval")
