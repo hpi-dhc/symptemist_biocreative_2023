@@ -1,4 +1,4 @@
-# HPI-DHC @ BioCreative VIII–SympTEMIST:
+# HPI-DHC @ BioCreative VIII–SympTEMIST
 
 Detection and Normalization of Symptom Mentions with [SpanMarker](https://github.com/tomaarsen/SpanMarkerNER) and [xMEN](https://github.com/hpi-dhc/xmen)
 
