@@ -1,11 +1,11 @@
-# HPI-DHC @ BioCreative VIII–SympTEMIST:
+# HPI-DHC @ BioCreative VIII–SympTEMIST
 
 Detection and Normalization of Symptom Mentions with [SpanMarker](https://github.com/tomaarsen/SpanMarkerNER) and [xMEN](https://github.com/hpi-dhc/xmen)
 
 ## Preparation
 
 - Get the recent version of the SympTEMIST data from Zenodo: https://zenodo.org/records/8413866
-- For subtask 2 (EL), get access to the 2023AA metathesaurus
+- For subtask 2 (EL), get access to the [UMLS 2023AA metathesaurus](https://www.nlm.nih.gov/research/umls/licensedcontent/umlsknowledgesources.html)
 
 
 ### Subtask 1 (NER)
