@@ -17,3 +17,16 @@ Detection and Normalization of Symptom Mentions with [SpanMarker](https://github
 ### Subtask 2 (EL)
 
 - see [notebooks/03_EL_xMEN.ipynb](notebooks/03_EL_xMEN.ipynb)
+
+## Citation
+
+```bibtex
+@inproceedings{borchert2023symptemist,
+  author = {Borchert, Florian and Llorca, Ignacio and Schapranow, Matthieu-P.},
+  title = {HPI-DHC @ BC8 SympTEMIST Track: Detection and Normalization of Symptom Mentions with SpanMarker and xMEN},
+  booktitle = {Proceedings of the BioCreative VIII Challenge and Workshop: Curation and Evaluation in the Era of Generative Models},
+  editor = {Islamaj, Rezarta and Arighi, Cecilia and Campbell, Ian and Gonzalez-Hernandez, Graciela and Hirschman, Lynette and Krallinger, Martin and Lima-López, Salvador and Weissenbacher, Davy and Lu, Zhiyong},
+  address = {New Orleans, LA},
+  year = 2023
+}
+```
